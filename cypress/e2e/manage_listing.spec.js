@@ -26,7 +26,7 @@ describe('Manage Listing Scenarios', () => {
         performCommonSteps();
         // negative & functional scenario
         managelisting.negativeManageListScenariosOne();
-        managelisting.enterMinValue('312'); // Intentional scenario: This will fail the success message assertion if you will not change the value
+        managelisting.enterMinValue('315'); // Intentional scenario: This will fail the success message assertion if you will not change the value
         managelisting.clickMaxValue();
         managelisting.successMessage();
     });

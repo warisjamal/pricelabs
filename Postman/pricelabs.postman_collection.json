@@ -1,0 +1,475 @@
+{
+	"info": {
+		"_postman_id": "42ed3cd1-c610-4725-98e2-99bc295eb293",
+		"name": "pricelabs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19244874"
+	},
+	"item": [
+		{
+			"name": "Get Organization",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Pricelabs name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.name).to.eql(\"PriceLabs\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/v1/widgets/organization",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"widgets",
+						"organization"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "notification",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Count check\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.data.count).to.eql(1);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/v1/widgets/notifications/unseen?limit=100",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"widgets",
+						"notifications",
+						"unseen"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Positive Update Bedroom Count",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Your bedroom count is set to\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0.9"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Cookie",
+						"value": "track_uid=6ee4b248-9fe6-2a3d-d4e7-db7971325924; _gcl_au=1.1.1351518925.1732249348; rl_page_init_referrer=RudderEncrypt%3AU2FsdGVkX18DXP953fLSsU3qOUmFCSN6D1bnXg72LTLagmWmkYz0ouOaJNmtK2yQOVJ0EVPUm32%2BB8omZ%2FTEk8t0eH%2FLPQVKfW8zVK2HpUR6MQudfVkh%2F4XW6%2F%2FuP7VrzoNMoUC5%2F2nkB3PqjSees9FjIOo67ciaT59KbGZLH68%3D; rl_page_init_referring_domain=RudderEncrypt%3AU2FsdGVkX18EVYb5Jj9r%2FtqRKsFyV7BxpsUrd7RJ9BPFZEMuUdnzH4%2BbFY%2FV6wT%2B; tz=Asia%2FCalcutta; slReferer=aHR0cHM6Ly9oZWxsby5wcmljZWxhYnMuY28v; i18next=en; _gid=GA1.2.1348601828.1732615775; rowFilter=parent.false; zipySessionUrl=NOT AVAILABLE; _vwo_uuid_v2=D68D47475FBD6BFC883349927E7C0A97F|d2d4e7d48be945e25377961fe7b5fb1a; _clck=18caw2x%7C2%7Cfr9%7C0%7C1787; isiframeenabled=true; pricelabs1812-_zldp=myk2imE925dGkSXcm9VSytfqhh9M3KHwqvpwYYovrohZmjVGjvtHpoBG2g1uNXbQYs2JwMsmvgM%3D; pricelabs1812-_zldt=3b6ab103-4a75-4c2a-9fe0-90955c260988-2; _rdt_uuid=1732249347896.f1db4cc7-de8f-420c-9159-4c0d8a7090ed; _uetsid=56a3d720adac11ef8a26affe4bcda9ff; _uetvid=6397e2d0a88911ef80a7898816de9900; _clsk=1cm5atf%7C1732814486812%7C2%7C1%7Ci.clarity.ms%2Fcollect; rl_user_id=RudderEncrypt%3AU2FsdGVkX1%2FOCGwmTlQFSybL%2FgA0SAGpxRCJ0jCfCL2PGYyWFCuJjeAncKMgqL1KObANCGFIg2w7UzMoMjJxVA%3D%3D; rl_trait=RudderEncrypt%3AU2FsdGVkX1%2F9MUvewFMjn0usBTQFvnQ8FMQJNSQ%2BCaQdNI%2Fmdga7i6npr8Nnr4Csg%2Fmdl4fN3K6T6%2FZxeENSYtwOLmoupkQitnDeBTwfKoJXGhjzkBbaU9t80%2F29kLRw7%2FTngxkiu%2B2dBqKqmLmX0Ecq5%2F0VMH9crVxy0i%2FL3bA%3D; rl_group_id=RudderEncrypt%3AU2FsdGVkX19G9F5%2Fy0clP2V4LtOKTLn6wiVZJcElxKU%3D; rl_group_trait=RudderEncrypt%3AU2FsdGVkX1%2FGnllDEF5ZXXuJ3gvxmRqgBtkZbh7L1sw%3D; rl_anonymous_id=RudderEncrypt%3AU2FsdGVkX1%2Bm0tggndWInfOOJzvsUoGKqPT48y%2FAdeUclzwCNOABqXWeIUxAiArOq1WNcE2%2Ft34ZG3aTIxtVrQ%3D%3D; rl_session=RudderEncrypt%3AU2FsdGVkX18v9peedLC5TBCIUFcEzyZBBXjqdbNJxlo1iC%2Fs82GmxqXpoVXUb74sl7SBnb3qiXAM1l2dOkxDm0dB%2BHX9SPyvJQVkCnqv8%2B2YjgOc7%2FqKl2xQBBY8%2BBQJAa2kQzrMq6TUreiGe5k1Ig%3D%3D; _nglm=123641; _p_session=a96c88a00ba1dd5a5a23917f096d47dd; _ga_8W6W04QYLY=GS1.1.1732814115.8.1.1732814547.57.0.0; colFilter=group.true,sub-group.true,tags.true,min.true,base.true,max.true,city.true,last-synced.true,bedroom-count.true,algorithm-version.false,adjusted_occupancy--15.true,occupancy--90.true,revenue--60.true; name=; _ga_CRP42HPPDJ=GS1.1.1732813808.12.1.1732815518.60.0.0; _ga=GA1.2.1295290618.1732249348"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"listingId\":\"dummy_listing_320\",\r\n    \"pms_name\":\"dummypms\",\r\n    \"no_of_bedrooms\":\"1 BR\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{web_url}}/update_bedroom_count",
+					"host": [
+						"{{web_url}}"
+					],
+					"path": [
+						"update_bedroom_count"
+					]
+				},
+				"description": "Generated from cURL: curl 'https://pricelabs.co/update_bedroom_count' \\\r\n  -H 'Accept: */*' \\\r\n  -H 'Accept-Language: en-US,en;q=0.9' \\\r\n  -H 'Connection: keep-alive' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -H 'Cookie: track_uid=6ee4b248-9fe6-2a3d-d4e7-db7971325924; _gcl_au=1.1.1351518925.1732249348; rl_page_init_referrer=RudderEncrypt%3AU2FsdGVkX18DXP953fLSsU3qOUmFCSN6D1bnXg72LTLagmWmkYz0ouOaJNmtK2yQOVJ0EVPUm32%2BB8omZ%2FTEk8t0eH%2FLPQVKfW8zVK2HpUR6MQudfVkh%2F4XW6%2F%2FuP7VrzoNMoUC5%2F2nkB3PqjSees9FjIOo67ciaT59KbGZLH68%3D; rl_page_init_referring_domain=RudderEncrypt%3AU2FsdGVkX18EVYb5Jj9r%2FtqRKsFyV7BxpsUrd7RJ9BPFZEMuUdnzH4%2BbFY%2FV6wT%2B; tz=Asia%2FCalcutta; slReferer=aHR0cHM6Ly9oZWxsby5wcmljZWxhYnMuY28v; i18next=en; _gid=GA1.2.1348601828.1732615775; rowFilter=parent.false; zipySessionUrl=NOT AVAILABLE; _vwo_uuid_v2=D68D47475FBD6BFC883349927E7C0A97F|d2d4e7d48be945e25377961fe7b5fb1a; _clck=18caw2x%7C2%7Cfr9%7C0%7C1787; isiframeenabled=true; pricelabs1812-_zldp=myk2imE925dGkSXcm9VSytfqhh9M3KHwqvpwYYovrohZmjVGjvtHpoBG2g1uNXbQYs2JwMsmvgM%3D; pricelabs1812-_zldt=3b6ab103-4a75-4c2a-9fe0-90955c260988-2; _rdt_uuid=1732249347896.f1db4cc7-de8f-420c-9159-4c0d8a7090ed; _uetsid=56a3d720adac11ef8a26affe4bcda9ff; _uetvid=6397e2d0a88911ef80a7898816de9900; _clsk=1cm5atf%7C1732814486812%7C2%7C1%7Ci.clarity.ms%2Fcollect; rl_user_id=RudderEncrypt%3AU2FsdGVkX1%2FOCGwmTlQFSybL%2FgA0SAGpxRCJ0jCfCL2PGYyWFCuJjeAncKMgqL1KObANCGFIg2w7UzMoMjJxVA%3D%3D; rl_trait=RudderEncrypt%3AU2FsdGVkX1%2F9MUvewFMjn0usBTQFvnQ8FMQJNSQ%2BCaQdNI%2Fmdga7i6npr8Nnr4Csg%2Fmdl4fN3K6T6%2FZxeENSYtwOLmoupkQitnDeBTwfKoJXGhjzkBbaU9t80%2F29kLRw7%2FTngxkiu%2B2dBqKqmLmX0Ecq5%2F0VMH9crVxy0i%2FL3bA%3D; rl_group_id=RudderEncrypt%3AU2FsdGVkX19G9F5%2Fy0clP2V4LtOKTLn6wiVZJcElxKU%3D; rl_group_trait=RudderEncrypt%3AU2FsdGVkX1%2FGnllDEF5ZXXuJ3gvxmRqgBtkZbh7L1sw%3D; rl_anonymous_id=RudderEncrypt%3AU2FsdGVkX1%2Bm0tggndWInfOOJzvsUoGKqPT48y%2FAdeUclzwCNOABqXWeIUxAiArOq1WNcE2%2Ft34ZG3aTIxtVrQ%3D%3D; rl_session=RudderEncrypt%3AU2FsdGVkX18v9peedLC5TBCIUFcEzyZBBXjqdbNJxlo1iC%2Fs82GmxqXpoVXUb74sl7SBnb3qiXAM1l2dOkxDm0dB%2BHX9SPyvJQVkCnqv8%2B2YjgOc7%2FqKl2xQBBY8%2BBQJAa2kQzrMq6TUreiGe5k1Ig%3D%3D; _nglm=123641; _p_session=a96c88a00ba1dd5a5a23917f096d47dd; _ga_8W6W04QYLY=GS1.1.1732814115.8.1.1732814547.57.0.0; colFilter=group.true,sub-group.true,tags.true,min.true,base.true,max.true,city.true,last-synced.true,bedroom-count.true,algorithm-version.false,adjusted_occupancy--15.true,occupancy--90.true,revenue--60.true; name=; _ga_CRP42HPPDJ=GS1.1.1732813808.12.1.1732815518.60.0.0; _ga=GA1.2.1295290618.1732249348' \\\r\n  -H 'Origin: https://pricelabs.co' \\\r\n  -H 'Referer: https://pricelabs.co/mappings?filtered_view=1&cities=Chennai' \\\r\n  -H 'Sec-Fetch-Dest: empty' \\\r\n  -H 'Sec-Fetch-Mode: cors' \\\r\n  -H 'Sec-Fetch-Site: same-origin' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36' \\\r\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  --data-raw '{\"listingId\":\"dummy_listing_320\",\"pms_name\":\"dummypms\",\"no_of_bedrooms\":\"1 BR\"}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Negative Update Bedroom Count",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Listing not Found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.error).to.eql('Listing not found');\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0.9"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Cookie",
+						"value": "track_uid=6ee4b248-9fe6-2a3d-d4e7-db7971325924; _gcl_au=1.1.1351518925.1732249348; rl_page_init_referrer=RudderEncrypt%3AU2FsdGVkX18DXP953fLSsU3qOUmFCSN6D1bnXg72LTLagmWmkYz0ouOaJNmtK2yQOVJ0EVPUm32%2BB8omZ%2FTEk8t0eH%2FLPQVKfW8zVK2HpUR6MQudfVkh%2F4XW6%2F%2FuP7VrzoNMoUC5%2F2nkB3PqjSees9FjIOo67ciaT59KbGZLH68%3D; rl_page_init_referring_domain=RudderEncrypt%3AU2FsdGVkX18EVYb5Jj9r%2FtqRKsFyV7BxpsUrd7RJ9BPFZEMuUdnzH4%2BbFY%2FV6wT%2B; tz=Asia%2FCalcutta; slReferer=aHR0cHM6Ly9oZWxsby5wcmljZWxhYnMuY28v; i18next=en; _gid=GA1.2.1348601828.1732615775; rowFilter=parent.false; zipySessionUrl=NOT AVAILABLE; _vwo_uuid_v2=D68D47475FBD6BFC883349927E7C0A97F|d2d4e7d48be945e25377961fe7b5fb1a; _clck=18caw2x%7C2%7Cfr9%7C0%7C1787; isiframeenabled=true; pricelabs1812-_zldp=myk2imE925dGkSXcm9VSytfqhh9M3KHwqvpwYYovrohZmjVGjvtHpoBG2g1uNXbQYs2JwMsmvgM%3D; pricelabs1812-_zldt=3b6ab103-4a75-4c2a-9fe0-90955c260988-2; _rdt_uuid=1732249347896.f1db4cc7-de8f-420c-9159-4c0d8a7090ed; _uetsid=56a3d720adac11ef8a26affe4bcda9ff; _uetvid=6397e2d0a88911ef80a7898816de9900; _clsk=1cm5atf%7C1732814486812%7C2%7C1%7Ci.clarity.ms%2Fcollect; rl_user_id=RudderEncrypt%3AU2FsdGVkX1%2FOCGwmTlQFSybL%2FgA0SAGpxRCJ0jCfCL2PGYyWFCuJjeAncKMgqL1KObANCGFIg2w7UzMoMjJxVA%3D%3D; rl_trait=RudderEncrypt%3AU2FsdGVkX1%2F9MUvewFMjn0usBTQFvnQ8FMQJNSQ%2BCaQdNI%2Fmdga7i6npr8Nnr4Csg%2Fmdl4fN3K6T6%2FZxeENSYtwOLmoupkQitnDeBTwfKoJXGhjzkBbaU9t80%2F29kLRw7%2FTngxkiu%2B2dBqKqmLmX0Ecq5%2F0VMH9crVxy0i%2FL3bA%3D; rl_group_id=RudderEncrypt%3AU2FsdGVkX19G9F5%2Fy0clP2V4LtOKTLn6wiVZJcElxKU%3D; rl_group_trait=RudderEncrypt%3AU2FsdGVkX1%2FGnllDEF5ZXXuJ3gvxmRqgBtkZbh7L1sw%3D; rl_anonymous_id=RudderEncrypt%3AU2FsdGVkX1%2Bm0tggndWInfOOJzvsUoGKqPT48y%2FAdeUclzwCNOABqXWeIUxAiArOq1WNcE2%2Ft34ZG3aTIxtVrQ%3D%3D; rl_session=RudderEncrypt%3AU2FsdGVkX18v9peedLC5TBCIUFcEzyZBBXjqdbNJxlo1iC%2Fs82GmxqXpoVXUb74sl7SBnb3qiXAM1l2dOkxDm0dB%2BHX9SPyvJQVkCnqv8%2B2YjgOc7%2FqKl2xQBBY8%2BBQJAa2kQzrMq6TUreiGe5k1Ig%3D%3D; _nglm=123641; _p_session=a96c88a00ba1dd5a5a23917f096d47dd; _ga_8W6W04QYLY=GS1.1.1732814115.8.1.1732814547.57.0.0; colFilter=group.true,sub-group.true,tags.true,min.true,base.true,max.true,city.true,last-synced.true,bedroom-count.true,algorithm-version.false,adjusted_occupancy--15.true,occupancy--90.true,revenue--60.true; name=; _ga_CRP42HPPDJ=GS1.1.1732813808.12.1.1732815518.60.0.0; _ga=GA1.2.1295290618.1732249348"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"listingId\":\"dummy_listing_320\",\r\n    \"pms_name\":28.5,\r\n    \"no_of_bedrooms\":\"1 BR\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{web_url}}/update_bedroom_count",
+					"host": [
+						"{{web_url}}"
+					],
+					"path": [
+						"update_bedroom_count"
+					]
+				},
+				"description": "Generated from cURL: curl 'https://pricelabs.co/update_bedroom_count' \\\r\n  -H 'Accept: */*' \\\r\n  -H 'Accept-Language: en-US,en;q=0.9' \\\r\n  -H 'Connection: keep-alive' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -H 'Cookie: track_uid=6ee4b248-9fe6-2a3d-d4e7-db7971325924; _gcl_au=1.1.1351518925.1732249348; rl_page_init_referrer=RudderEncrypt%3AU2FsdGVkX18DXP953fLSsU3qOUmFCSN6D1bnXg72LTLagmWmkYz0ouOaJNmtK2yQOVJ0EVPUm32%2BB8omZ%2FTEk8t0eH%2FLPQVKfW8zVK2HpUR6MQudfVkh%2F4XW6%2F%2FuP7VrzoNMoUC5%2F2nkB3PqjSees9FjIOo67ciaT59KbGZLH68%3D; rl_page_init_referring_domain=RudderEncrypt%3AU2FsdGVkX18EVYb5Jj9r%2FtqRKsFyV7BxpsUrd7RJ9BPFZEMuUdnzH4%2BbFY%2FV6wT%2B; tz=Asia%2FCalcutta; slReferer=aHR0cHM6Ly9oZWxsby5wcmljZWxhYnMuY28v; i18next=en; _gid=GA1.2.1348601828.1732615775; rowFilter=parent.false; zipySessionUrl=NOT AVAILABLE; _vwo_uuid_v2=D68D47475FBD6BFC883349927E7C0A97F|d2d4e7d48be945e25377961fe7b5fb1a; _clck=18caw2x%7C2%7Cfr9%7C0%7C1787; isiframeenabled=true; pricelabs1812-_zldp=myk2imE925dGkSXcm9VSytfqhh9M3KHwqvpwYYovrohZmjVGjvtHpoBG2g1uNXbQYs2JwMsmvgM%3D; pricelabs1812-_zldt=3b6ab103-4a75-4c2a-9fe0-90955c260988-2; _rdt_uuid=1732249347896.f1db4cc7-de8f-420c-9159-4c0d8a7090ed; _uetsid=56a3d720adac11ef8a26affe4bcda9ff; _uetvid=6397e2d0a88911ef80a7898816de9900; _clsk=1cm5atf%7C1732814486812%7C2%7C1%7Ci.clarity.ms%2Fcollect; rl_user_id=RudderEncrypt%3AU2FsdGVkX1%2FOCGwmTlQFSybL%2FgA0SAGpxRCJ0jCfCL2PGYyWFCuJjeAncKMgqL1KObANCGFIg2w7UzMoMjJxVA%3D%3D; rl_trait=RudderEncrypt%3AU2FsdGVkX1%2F9MUvewFMjn0usBTQFvnQ8FMQJNSQ%2BCaQdNI%2Fmdga7i6npr8Nnr4Csg%2Fmdl4fN3K6T6%2FZxeENSYtwOLmoupkQitnDeBTwfKoJXGhjzkBbaU9t80%2F29kLRw7%2FTngxkiu%2B2dBqKqmLmX0Ecq5%2F0VMH9crVxy0i%2FL3bA%3D; rl_group_id=RudderEncrypt%3AU2FsdGVkX19G9F5%2Fy0clP2V4LtOKTLn6wiVZJcElxKU%3D; rl_group_trait=RudderEncrypt%3AU2FsdGVkX1%2FGnllDEF5ZXXuJ3gvxmRqgBtkZbh7L1sw%3D; rl_anonymous_id=RudderEncrypt%3AU2FsdGVkX1%2Bm0tggndWInfOOJzvsUoGKqPT48y%2FAdeUclzwCNOABqXWeIUxAiArOq1WNcE2%2Ft34ZG3aTIxtVrQ%3D%3D; rl_session=RudderEncrypt%3AU2FsdGVkX18v9peedLC5TBCIUFcEzyZBBXjqdbNJxlo1iC%2Fs82GmxqXpoVXUb74sl7SBnb3qiXAM1l2dOkxDm0dB%2BHX9SPyvJQVkCnqv8%2B2YjgOc7%2FqKl2xQBBY8%2BBQJAa2kQzrMq6TUreiGe5k1Ig%3D%3D; _nglm=123641; _p_session=a96c88a00ba1dd5a5a23917f096d47dd; _ga_8W6W04QYLY=GS1.1.1732814115.8.1.1732814547.57.0.0; colFilter=group.true,sub-group.true,tags.true,min.true,base.true,max.true,city.true,last-synced.true,bedroom-count.true,algorithm-version.false,adjusted_occupancy--15.true,occupancy--90.true,revenue--60.true; name=; _ga_CRP42HPPDJ=GS1.1.1732813808.12.1.1732815518.60.0.0; _ga=GA1.2.1295290618.1732249348' \\\r\n  -H 'Origin: https://pricelabs.co' \\\r\n  -H 'Referer: https://pricelabs.co/mappings?filtered_view=1&cities=Chennai' \\\r\n  -H 'Sec-Fetch-Dest: empty' \\\r\n  -H 'Sec-Fetch-Mode: cors' \\\r\n  -H 'Sec-Fetch-Site: same-origin' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36' \\\r\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  --data-raw '{\"listingId\":\"dummy_listing_320\",\"pms_name\":\"dummypms\",\"no_of_bedrooms\":\"1 BR\"}'"
+			},
+			"response": []
+		},
+		{
+			"name": "no Validation_Update Min Price",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json, text/javascript, */*; q=0.01"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0.9"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded; charset=UTF-8"
+					},
+					{
+						"key": "Cookie",
+						"value": "track_uid=6ee4b248-9fe6-2a3d-d4e7-db7971325924; _gcl_au=1.1.1351518925.1732249348; rl_page_init_referrer=RudderEncrypt%3AU2FsdGVkX18DXP953fLSsU3qOUmFCSN6D1bnXg72LTLagmWmkYz0ouOaJNmtK2yQOVJ0EVPUm32%2BB8omZ%2FTEk8t0eH%2FLPQVKfW8zVK2HpUR6MQudfVkh%2F4XW6%2F%2FuP7VrzoNMoUC5%2F2nkB3PqjSees9FjIOo67ciaT59KbGZLH68%3D; rl_page_init_referring_domain=RudderEncrypt%3AU2FsdGVkX18EVYb5Jj9r%2FtqRKsFyV7BxpsUrd7RJ9BPFZEMuUdnzH4%2BbFY%2FV6wT%2B; tz=Asia%2FCalcutta; slReferer=aHR0cHM6Ly9oZWxsby5wcmljZWxhYnMuY28v; i18next=en; _gid=GA1.2.1348601828.1732615775; rowFilter=parent.false; zipySessionUrl=NOT AVAILABLE; _vwo_uuid_v2=D68D47475FBD6BFC883349927E7C0A97F|d2d4e7d48be945e25377961fe7b5fb1a; _clck=18caw2x%7C2%7Cfr9%7C0%7C1787; isiframeenabled=true; pricelabs1812-_zldp=myk2imE925dGkSXcm9VSytfqhh9M3KHwqvpwYYovrohZmjVGjvtHpoBG2g1uNXbQYs2JwMsmvgM%3D; pricelabs1812-_zldt=3b6ab103-4a75-4c2a-9fe0-90955c260988-2; _rdt_uuid=1732249347896.f1db4cc7-de8f-420c-9159-4c0d8a7090ed; _uetsid=56a3d720adac11ef8a26affe4bcda9ff; _uetvid=6397e2d0a88911ef80a7898816de9900; _clsk=1cm5atf%7C1732814486812%7C2%7C1%7Ci.clarity.ms%2Fcollect; rl_user_id=RudderEncrypt%3AU2FsdGVkX1%2FOCGwmTlQFSybL%2FgA0SAGpxRCJ0jCfCL2PGYyWFCuJjeAncKMgqL1KObANCGFIg2w7UzMoMjJxVA%3D%3D; rl_trait=RudderEncrypt%3AU2FsdGVkX1%2F9MUvewFMjn0usBTQFvnQ8FMQJNSQ%2BCaQdNI%2Fmdga7i6npr8Nnr4Csg%2Fmdl4fN3K6T6%2FZxeENSYtwOLmoupkQitnDeBTwfKoJXGhjzkBbaU9t80%2F29kLRw7%2FTngxkiu%2B2dBqKqmLmX0Ecq5%2F0VMH9crVxy0i%2FL3bA%3D; rl_group_id=RudderEncrypt%3AU2FsdGVkX19G9F5%2Fy0clP2V4LtOKTLn6wiVZJcElxKU%3D; rl_group_trait=RudderEncrypt%3AU2FsdGVkX1%2FGnllDEF5ZXXuJ3gvxmRqgBtkZbh7L1sw%3D; rl_anonymous_id=RudderEncrypt%3AU2FsdGVkX1%2Bm0tggndWInfOOJzvsUoGKqPT48y%2FAdeUclzwCNOABqXWeIUxAiArOq1WNcE2%2Ft34ZG3aTIxtVrQ%3D%3D; rl_session=RudderEncrypt%3AU2FsdGVkX18v9peedLC5TBCIUFcEzyZBBXjqdbNJxlo1iC%2Fs82GmxqXpoVXUb74sl7SBnb3qiXAM1l2dOkxDm0dB%2BHX9SPyvJQVkCnqv8%2B2YjgOc7%2FqKl2xQBBY8%2BBQJAa2kQzrMq6TUreiGe5k1Ig%3D%3D; _nglm=123641; _p_session=a96c88a00ba1dd5a5a23917f096d47dd; _ga_8W6W04QYLY=GS1.1.1732814115.8.1.1732814547.57.0.0; rpPageSize=50; colFilter=group.true,sub-group.true,tags.false,min.true,base.true,max.true,city.true,last-synced.true,bedroom-count.true,algorithm-version.false,adjusted_occupancy--15.true,occupancy--90.true,revenue--60.true; name=; _ga_CRP42HPPDJ=GS1.1.1732813808.12.1.1732816545.16.0.0; _ga=GA1.2.1295290618.1732249348"
+					},
+					{
+						"key": "Origin",
+						"value": "https://pricelabs.co"
+					},
+					{
+						"key": "Referer",
+						"value": "https://pricelabs.co/mappings?filtered_view=1"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "field=min_price&value=1400&pms_name=stays&listingId=5d0a4acba5dbf000106e1b71&source=manage-listings",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{web_url}}/update_price",
+					"host": [
+						"{{web_url}}"
+					],
+					"path": [
+						"update_price"
+					]
+				},
+				"description": "Generated from cURL: curl 'https://pricelabs.co/update_price' \\\r\n  -H 'Accept: application/json, text/javascript, */*; q=0.01' \\\r\n  -H 'Accept-Language: en-US,en;q=0.9' \\\r\n  -H 'Connection: keep-alive' \\\r\n  -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' \\\r\n  -H 'Cookie: track_uid=6ee4b248-9fe6-2a3d-d4e7-db7971325924; _gcl_au=1.1.1351518925.1732249348; rl_page_init_referrer=RudderEncrypt%3AU2FsdGVkX18DXP953fLSsU3qOUmFCSN6D1bnXg72LTLagmWmkYz0ouOaJNmtK2yQOVJ0EVPUm32%2BB8omZ%2FTEk8t0eH%2FLPQVKfW8zVK2HpUR6MQudfVkh%2F4XW6%2F%2FuP7VrzoNMoUC5%2F2nkB3PqjSees9FjIOo67ciaT59KbGZLH68%3D; rl_page_init_referring_domain=RudderEncrypt%3AU2FsdGVkX18EVYb5Jj9r%2FtqRKsFyV7BxpsUrd7RJ9BPFZEMuUdnzH4%2BbFY%2FV6wT%2B; tz=Asia%2FCalcutta; slReferer=aHR0cHM6Ly9oZWxsby5wcmljZWxhYnMuY28v; i18next=en; _gid=GA1.2.1348601828.1732615775; rowFilter=parent.false; zipySessionUrl=NOT AVAILABLE; _vwo_uuid_v2=D68D47475FBD6BFC883349927E7C0A97F|d2d4e7d48be945e25377961fe7b5fb1a; _clck=18caw2x%7C2%7Cfr9%7C0%7C1787; isiframeenabled=true; pricelabs1812-_zldp=myk2imE925dGkSXcm9VSytfqhh9M3KHwqvpwYYovrohZmjVGjvtHpoBG2g1uNXbQYs2JwMsmvgM%3D; pricelabs1812-_zldt=3b6ab103-4a75-4c2a-9fe0-90955c260988-2; _rdt_uuid=1732249347896.f1db4cc7-de8f-420c-9159-4c0d8a7090ed; _uetsid=56a3d720adac11ef8a26affe4bcda9ff; _uetvid=6397e2d0a88911ef80a7898816de9900; _clsk=1cm5atf%7C1732814486812%7C2%7C1%7Ci.clarity.ms%2Fcollect; rl_user_id=RudderEncrypt%3AU2FsdGVkX1%2FOCGwmTlQFSybL%2FgA0SAGpxRCJ0jCfCL2PGYyWFCuJjeAncKMgqL1KObANCGFIg2w7UzMoMjJxVA%3D%3D; rl_trait=RudderEncrypt%3AU2FsdGVkX1%2F9MUvewFMjn0usBTQFvnQ8FMQJNSQ%2BCaQdNI%2Fmdga7i6npr8Nnr4Csg%2Fmdl4fN3K6T6%2FZxeENSYtwOLmoupkQitnDeBTwfKoJXGhjzkBbaU9t80%2F29kLRw7%2FTngxkiu%2B2dBqKqmLmX0Ecq5%2F0VMH9crVxy0i%2FL3bA%3D; rl_group_id=RudderEncrypt%3AU2FsdGVkX19G9F5%2Fy0clP2V4LtOKTLn6wiVZJcElxKU%3D; rl_group_trait=RudderEncrypt%3AU2FsdGVkX1%2FGnllDEF5ZXXuJ3gvxmRqgBtkZbh7L1sw%3D; rl_anonymous_id=RudderEncrypt%3AU2FsdGVkX1%2Bm0tggndWInfOOJzvsUoGKqPT48y%2FAdeUclzwCNOABqXWeIUxAiArOq1WNcE2%2Ft34ZG3aTIxtVrQ%3D%3D; rl_session=RudderEncrypt%3AU2FsdGVkX18v9peedLC5TBCIUFcEzyZBBXjqdbNJxlo1iC%2Fs82GmxqXpoVXUb74sl7SBnb3qiXAM1l2dOkxDm0dB%2BHX9SPyvJQVkCnqv8%2B2YjgOc7%2FqKl2xQBBY8%2BBQJAa2kQzrMq6TUreiGe5k1Ig%3D%3D; _nglm=123641; _p_session=a96c88a00ba1dd5a5a23917f096d47dd; _ga_8W6W04QYLY=GS1.1.1732814115.8.1.1732814547.57.0.0; rpPageSize=50; colFilter=group.true,sub-group.true,tags.false,min.true,base.true,max.true,city.true,last-synced.true,bedroom-count.true,algorithm-version.false,adjusted_occupancy--15.true,occupancy--90.true,revenue--60.true; name=; _ga_CRP42HPPDJ=GS1.1.1732813808.12.1.1732816545.16.0.0; _ga=GA1.2.1295290618.1732249348' \\\r\n  -H 'Origin: https://pricelabs.co' \\\r\n  -H 'Referer: https://pricelabs.co/mappings?filtered_view=1' \\\r\n  -H 'Sec-Fetch-Dest: empty' \\\r\n  -H 'Sec-Fetch-Mode: cors' \\\r\n  -H 'Sec-Fetch-Site: same-origin' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36' \\\r\n  -H 'X-Requested-With: XMLHttpRequest' \\\r\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  --data-raw 'field=min_price&value=150&pms_name=stays&listingId=5d0a4acba5dbf000106e1b71&source=manage-listings'"
+			},
+			"response": []
+		},
+		{
+			"name": "less validation_DSO_ add_custom_pricing",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "en-US,en;q=0.9"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive"
+					},
+					{
+						"key": "Cookie",
+						"value": "track_uid=6ee4b248-9fe6-2a3d-d4e7-db7971325924; _gcl_au=1.1.1351518925.1732249348; rl_page_init_referrer=RudderEncrypt%3AU2FsdGVkX18DXP953fLSsU3qOUmFCSN6D1bnXg72LTLagmWmkYz0ouOaJNmtK2yQOVJ0EVPUm32%2BB8omZ%2FTEk8t0eH%2FLPQVKfW8zVK2HpUR6MQudfVkh%2F4XW6%2F%2FuP7VrzoNMoUC5%2F2nkB3PqjSees9FjIOo67ciaT59KbGZLH68%3D; rl_page_init_referring_domain=RudderEncrypt%3AU2FsdGVkX18EVYb5Jj9r%2FtqRKsFyV7BxpsUrd7RJ9BPFZEMuUdnzH4%2BbFY%2FV6wT%2B; i18next=en; _gid=GA1.2.1348601828.1732615775; pricelabs1812-_zldp=myk2imE925cm915fgTfUf0Ia%2FEXnFE3IG%2Bx1q8XPJ9AQn4hFrCdqwBZ%2BWP7OjcloYs2JwMsmvgM%3D; _vwo_uuid_v2=D68D47475FBD6BFC883349927E7C0A97F|d2d4e7d48be945e25377961fe7b5fb1a; _clck=18caw2x%7C2%7Cfr9%7C0%7C1787; pricelabs1812-_zldp=myk2imE925dGkSXcm9VSytfqhh9M3KHwqvpwYYovrohZmjVGjvtHpoBG2g1uNXbQYs2JwMsmvgM%3D; pricelabs1812-_zldt=3b6ab103-4a75-4c2a-9fe0-90955c260988-2; _rdt_uuid=1732249347896.f1db4cc7-de8f-420c-9159-4c0d8a7090ed; _uetsid=56a3d720adac11ef8a26affe4bcda9ff; _uetvid=6397e2d0a88911ef80a7898816de9900; _clsk=1cm5atf%7C1732814486812%7C2%7C1%7Ci.clarity.ms%2Fcollect; tz=Asia%2FCalcutta; rl_user_id=RudderEncrypt%3AU2FsdGVkX1%2BhnSbnRk7QUF3sp%2BrFeGBKKAZDc50zYc7zXi6ASWTCBLKXAlS4cJ2hNkI6zytyuh%2FGaH5z1BVoHA%3D%3D; rl_trait=RudderEncrypt%3AU2FsdGVkX18eZkRBBK4x%2Bpql%2B14BDHBxB2CN4baElMuPiWZOqjiJAOXEk16dunHM0U5pd6XItk0F78pRafI4p1nUdXFp6g%2FGPX5nRPMnta%2B%2FbngWgRBbJB2VXUuq6ZVZlPNusy4H3Df3yjhs49xHM5mKcxYebDdtGFe3UtojN3g%3D; rl_group_id=RudderEncrypt%3AU2FsdGVkX18mkTmKqRuMBZnK9%2B%2B9PECl8lq2N2vpRVk%3D; rl_group_trait=RudderEncrypt%3AU2FsdGVkX198zdg5uyJ3pED%2BKvAbpyKqaPD3S1Ea9Ww%3D; rl_anonymous_id=RudderEncrypt%3AU2FsdGVkX18jc6qPL0tqkZ7xWHoznmT7n4QrNVQpvsKCLGHbCV2h9HGaQsAAdvqtlgkxu6UPj%2Fq1xGQfcNS3%2Bg%3D%3D; rl_session=RudderEncrypt%3AU2FsdGVkX18ZrjhEbcIAMcaLvD9QHz6y2vOmPVsU0YWsncUmNgskUKnPz915G4ESIlWQEtxX1iblic7UK7YN%2F1xhRPZJRJAyPwkmj40rz0k5%2FHooI8MnAOxeK5laj4BNceD6bT30pq4j73P8zgUjBA%3D%3D; _nglm=123641; _p_session=fcde3e52c05fddc1f53ea294d0b447a5; _ga_8W6W04QYLY=GS1.1.1732817205.9.1.1732817231.34.0.0; _ga=GA1.2.1295290618.1732249348; _ga_CRP42HPPDJ=GS1.1.1732813808.12.1.1732817884.60.0.0; zipySessionUrl=NOT AVAILABLE; set_mc_default_page=false; pricelabs1812-_zldt=3b6ab103-4a75-4c2a-9fe0-90955c260988-2; isiframeenabled=true"
+					},
+					{
+						"key": "Origin",
+						"value": "https://app.pricelabs.co"
+					},
+					{
+						"key": "Referer",
+						"value": "https://app.pricelabs.co/multicalendar?page_number=1&page_size=40&startDate=2024-11-28&endDate=2025-02-26&pms=vrm"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "content-type",
+						"value": "application/json"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"price\": \"1700\",\r\n  \"reason\": \"\",\r\n  \"basePrice\": \"\",\r\n  \"priceType\": \"fixed\",\r\n  \"pmsName\": \"vrm\",\r\n  \"minStay\": \"3\",\r\n  \"minPrice\": \"500\",\r\n  \"minPriceType\": \"fixed\",\r\n  \"maxPrice\": \"800\",\r\n  \"maxPriceType\": \"fixed\",\r\n  \"listingId\": \"SUNSETPROPS_OLSE___533\",\r\n  \"currency\": \"USD\",\r\n  \"parentKey\": 698196,\r\n  \"page\": \"1\",\r\n  \"cacheBuster\": 1732818936465,\r\n  \"syncChildren\": true,\r\n  \"isParentListing\": true,\r\n  \"hasChildren\": true,\r\n  \"startDate\": \"Nov 29 2024\",\r\n  \"endDate\": \"Nov 29 2024\",\r\n  \"leadTimeExpiry\": \"\",\r\n  \"checkInCheckOutEnabled\": false,\r\n  \"checkIn\": \"0000000\",\r\n  \"checkOut\": \"1111111\",\r\n  \"actualStartDate\": \"2024-11-29\",\r\n  \"actualEndDate\": \"2024-11-29\",\r\n  \"currentRowIndex\": 0,\r\n  \"isPricingPage\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{dso_url}}/api/add_custom_pricing",
+					"host": [
+						"{{dso_url}}"
+					],
+					"path": [
+						"api",
+						"add_custom_pricing"
+					]
+				},
+				"description": "Generated from cURL: curl 'https://app.pricelabs.co/api/add_custom_pricing' \\\r\n  -H 'Accept: */*' \\\r\n  -H 'Accept-Language: en-US,en;q=0.9' \\\r\n  -H 'Connection: keep-alive' \\\r\n  -H 'Cookie: track_uid=6ee4b248-9fe6-2a3d-d4e7-db7971325924; _gcl_au=1.1.1351518925.1732249348; rl_page_init_referrer=RudderEncrypt%3AU2FsdGVkX18DXP953fLSsU3qOUmFCSN6D1bnXg72LTLagmWmkYz0ouOaJNmtK2yQOVJ0EVPUm32%2BB8omZ%2FTEk8t0eH%2FLPQVKfW8zVK2HpUR6MQudfVkh%2F4XW6%2F%2FuP7VrzoNMoUC5%2F2nkB3PqjSees9FjIOo67ciaT59KbGZLH68%3D; rl_page_init_referring_domain=RudderEncrypt%3AU2FsdGVkX18EVYb5Jj9r%2FtqRKsFyV7BxpsUrd7RJ9BPFZEMuUdnzH4%2BbFY%2FV6wT%2B; i18next=en; _gid=GA1.2.1348601828.1732615775; pricelabs1812-_zldp=myk2imE925cm915fgTfUf0Ia%2FEXnFE3IG%2Bx1q8XPJ9AQn4hFrCdqwBZ%2BWP7OjcloYs2JwMsmvgM%3D; _vwo_uuid_v2=D68D47475FBD6BFC883349927E7C0A97F|d2d4e7d48be945e25377961fe7b5fb1a; _clck=18caw2x%7C2%7Cfr9%7C0%7C1787; pricelabs1812-_zldp=myk2imE925dGkSXcm9VSytfqhh9M3KHwqvpwYYovrohZmjVGjvtHpoBG2g1uNXbQYs2JwMsmvgM%3D; pricelabs1812-_zldt=3b6ab103-4a75-4c2a-9fe0-90955c260988-2; _rdt_uuid=1732249347896.f1db4cc7-de8f-420c-9159-4c0d8a7090ed; _uetsid=56a3d720adac11ef8a26affe4bcda9ff; _uetvid=6397e2d0a88911ef80a7898816de9900; _clsk=1cm5atf%7C1732814486812%7C2%7C1%7Ci.clarity.ms%2Fcollect; tz=Asia%2FCalcutta; rl_user_id=RudderEncrypt%3AU2FsdGVkX1%2BhnSbnRk7QUF3sp%2BrFeGBKKAZDc50zYc7zXi6ASWTCBLKXAlS4cJ2hNkI6zytyuh%2FGaH5z1BVoHA%3D%3D; rl_trait=RudderEncrypt%3AU2FsdGVkX18eZkRBBK4x%2Bpql%2B14BDHBxB2CN4baElMuPiWZOqjiJAOXEk16dunHM0U5pd6XItk0F78pRafI4p1nUdXFp6g%2FGPX5nRPMnta%2B%2FbngWgRBbJB2VXUuq6ZVZlPNusy4H3Df3yjhs49xHM5mKcxYebDdtGFe3UtojN3g%3D; rl_group_id=RudderEncrypt%3AU2FsdGVkX18mkTmKqRuMBZnK9%2B%2B9PECl8lq2N2vpRVk%3D; rl_group_trait=RudderEncrypt%3AU2FsdGVkX198zdg5uyJ3pED%2BKvAbpyKqaPD3S1Ea9Ww%3D; rl_anonymous_id=RudderEncrypt%3AU2FsdGVkX18jc6qPL0tqkZ7xWHoznmT7n4QrNVQpvsKCLGHbCV2h9HGaQsAAdvqtlgkxu6UPj%2Fq1xGQfcNS3%2Bg%3D%3D; rl_session=RudderEncrypt%3AU2FsdGVkX18ZrjhEbcIAMcaLvD9QHz6y2vOmPVsU0YWsncUmNgskUKnPz915G4ESIlWQEtxX1iblic7UK7YN%2F1xhRPZJRJAyPwkmj40rz0k5%2FHooI8MnAOxeK5laj4BNceD6bT30pq4j73P8zgUjBA%3D%3D; _nglm=123641; _p_session=fcde3e52c05fddc1f53ea294d0b447a5; _ga_8W6W04QYLY=GS1.1.1732817205.9.1.1732817231.34.0.0; _ga=GA1.2.1295290618.1732249348; _ga_CRP42HPPDJ=GS1.1.1732813808.12.1.1732817884.60.0.0; zipySessionUrl=NOT AVAILABLE; set_mc_default_page=false; pricelabs1812-_zldt=3b6ab103-4a75-4c2a-9fe0-90955c260988-2; isiframeenabled=true' \\\r\n  -H 'Origin: https://app.pricelabs.co' \\\r\n  -H 'Referer: https://app.pricelabs.co/multicalendar?page_number=1&page_size=40&startDate=2024-11-28&endDate=2025-02-26&pms=vrm' \\\r\n  -H 'Sec-Fetch-Dest: empty' \\\r\n  -H 'Sec-Fetch-Mode: cors' \\\r\n  -H 'Sec-Fetch-Site: same-origin' \\\r\n  -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36' \\\r\n  -H 'content-type: application/json' \\\r\n  -H 'sec-ch-ua: \"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\"' \\\r\n  -H 'sec-ch-ua-mobile: ?0' \\\r\n  -H 'sec-ch-ua-platform: \"Windows\"' \\\r\n  --data-raw '{\"price\":\"1200\",\"reason\":\"\",\"basePrice\":\"\",\"priceType\":\"fixed\",\"pmsName\":\"vrm\",\"minStay\":\"3\",\"minPrice\":\"500\",\"minPriceType\":\"fixed\",\"maxPrice\":\"800\",\"maxPriceType\":\"fixed\",\"listingId\":\"SUNSETPROPS_OLSE___533\",\"currency\":\"USD\",\"parentKey\":698196,\"page\":\"1\",\"cacheBuster\":1732818936465,\"syncChildren\":true,\"isParentListing\":true,\"hasChildren\":true,\"startDate\":\"Nov 29 2024\",\"endDate\":\"Nov 29 2024\",\"leadTimeExpiry\":\"\",\"checkInCheckOutEnabled\":false,\"checkIn\":\"0000000\",\"checkOut\":\"1111111\",\"actualStartDate\":\"2024-11-29\",\"actualEndDate\":\"2024-11-29\",\"currentRowIndex\":0,\"isPricingPage\":false}'"
+			},
+			"response": []
+		}
+	]
+}
