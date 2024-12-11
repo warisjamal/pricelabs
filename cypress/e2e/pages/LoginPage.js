@@ -1,24 +1,24 @@
 class LoginPage {
     constructor() {
-        this.usernameField = '#user_email';
-        this.passwordField = '#password-field';
-        this.submitButton = 'input[type="submit"]';
+        this.usernameInputSelector = '#user_email';
+        this.passwordInputSelector = '#password-field';
+        this.submitButtonSelector = 'input[type="submit"]';
     }
 
-    visit() {
+    navigateToLoginPage() {
         cy.visit('/');
     }
 
-    enterUsername(username) {
-        cy.get(this.usernameField).should('be.visible').type(username);
+    fillUsername(username) {
+        cy.get(this.usernameInputSelector).should('be.visible').type(username);
     }
 
-    enterPassword(password) {
-        cy.get(this.passwordField).should('be.visible').type(password);
+    fillPassword(password) {
+        cy.get(this.passwordInputSelector).should('be.visible').type(password);
     }
 
-    submit() {
-        cy.get(this.submitButton).should('be.visible').and('have.value', 'Sign in').click();
+    clickSubmitButton() {
+        cy.get(this.submitButtonSelector).should('be.visible').and('have.value', 'Sign in').click();
     }
 }
 

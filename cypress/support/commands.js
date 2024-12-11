@@ -2,10 +2,10 @@ import LoginPage from '../e2e/pages/LoginPage';
 
 Cypress.Commands.add('login', (username, password) => {
     const loginPage = new LoginPage();
-    loginPage.visit('/');
-    loginPage.enterUsername(username);
-    loginPage.enterPassword(password);
-    loginPage.submit();
+    loginPage.navigateToLoginPage('/');
+    loginPage.fillUsername(username);
+    loginPage.fillPassword(password);
+    loginPage.clickSubmitButton();
     cy.url().should('include', '/pricing');
 });
 
